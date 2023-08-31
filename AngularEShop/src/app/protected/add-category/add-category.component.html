@@ -1,0 +1,31 @@
+<div class="container d-flex align-items-center justify-content-center" style="height: 100vh;">
+    <div class="card">
+      <div class="card-body">
+        <form (ngSubmit)="createCategory()" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="categoryName" class="fw-bold">Category Name</label>
+            <input type="text" id="categoryName" class="form-control" [(ngModel)]="categoryName" name="categoryName" required>
+          </div>
+  
+          <div class="form-group">
+            <label for="subcategory" class="fw-bold">Subcategory</label>
+            <input type="text" id="subcategory" class="form-control" [(ngModel)]="subcategory" name="subcategory" required>
+          </div>
+  
+          <button type="submit" class="btn btn-danger">Create</button>
+  
+          <div class="my-4">
+            <h4>Please add the Category Name and Subcategory before uploading an image.</h4>
+          </div>
+  
+          <div class="form-group">
+            <label for="categoryImage" class="fw-bold">Category Image</label>
+            <div class="input-group">
+              <input type="file" id="categoryImage" class="form-control-file" (change)="onFileSelected($event)" name="categoryImage">
+              <button type="button" class="btn btn-warning" (click)="uploadImage()">Upload</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

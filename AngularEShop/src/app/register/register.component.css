@@ -1,0 +1,12 @@
+form{
+    width: 500px;
+}
+.container{
+    font-family: serif;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.text-center{
+    align-items: center;
+}

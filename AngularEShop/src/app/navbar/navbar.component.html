@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid"> 
+    <img src="assets/logo.png" alt="logo" style="height: 80px; width: 80px;">
+    <a class="navbar-brand" href="#" style="color: black; font-style: italic;"><b> EShopping Zone</b></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+      aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav m-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a href="#" *ngIf="!loggedIn" class="nav-link active" aria-current="page"><b class="text">Home</b></a>
+        </li>
+        <li class="nav-item">
+          <a (click)="routeToAbout()" class="nav-link active"><b class="text">About</b></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+            style="font-family: serif;">
+            <b>Categories</b>
+          </a>
+          <ul class="dropdown-menu fs-5">
+            <ng-container *ngFor="let item of navigationList;">
+              <li class="text-center fw-bold" >
+                <a (click)="redirectToProducts(item.categoryId)" class="dropdown-item" >
+                  {{item.categoryName}}
+                </a>
+              </li>
+            </ng-container>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active"><b class="text" routerLink="/contactfeedback">Contact Us</b></a>
+        </li>
+        <li class="nav-item">
+          <a (click)="handleLinkClick($event)" 
+          [routerLink]="loggedIn ? '/' : '/login'" class="nav-link active"><b class="text">
+            {{ loggedIn ? 'Home' : 'Login/Register' }}</b></a>
+        </li>
+        <li class="nav-item" *ngIf="loggedIn">
+          <a [ngClass]="{ 'disabled-link': !loggedIn }" (click)="logout()" class="nav-link active"><b class="text">Logout</b></a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/cart" class="nav-link active"><b class="text"><i class="bi bi-cart-fill"></i>Cart</b></a>
+        </li>
+        <li class="nav-item">
+          <a [ngClass]="{'disabled-link': !loggedIn}" class="nav-link active" routerLink="/userDetails"><b class="text">My Profile</b></a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control px-2" type="text" placeholder="Search" aria-label="Search" id="search"
+        [value]="searchTerm" (input)="handleInputChange($event)">
+        <button class="btn" (click)="handleSearch()" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>

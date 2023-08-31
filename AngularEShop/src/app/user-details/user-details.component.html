@@ -1,0 +1,82 @@
+<div class="container mt-5">
+    <div class="profile-image mb-5">
+        <img *ngIf="Details?.profileImg !== null" [src]="getImagePath(Details?.profileImg)" height="145px" width="145px"/>
+        <img *ngIf="Details?.profileImg === null" [src]="getDefaultProfileImage(Details?.gender)" alt="Profile Image" height="145px" width="150px" />
+      </div>
+      <div class="d-flex justify-content-center align-items-center flex-column">
+        <div class="mb-3">
+          <label for="profileImg" class="form-label">Select Image:</label>
+          <input type="file" id="profileImg" name="profileImg" class="form-control" (change)="onFileSelected($event)">
+        </div>
+        <div>
+          <button type="button" class="btn" (click)="uploadImage()">Upload</button>
+        </div>
+      </div>
+      
+    <ng-container *ngIf="!editMode;">
+    <div class="user-details">
+      <h2 class="text-primary mt-5">Personal Information</h2>
+      <p><span class="label">Name:</span> <span class="value fw-bold text-dark"> {{Details?.userName}}</span></p>
+      <p><span class="label">Email:</span> <span class="value fw-bold text-dark"> {{Details?.email}}</span></p>
+      <p><span class="label">Address:</span> <span class="value fw-bold text-dark"> {{Details?.address}}</span></p>
+      <p><span class="label">Date of Birth:</span> <span class="value fw-bold text-dark"> {{Details?.dateOfBirth | date: 'mediumDate'}}</span></p>
+      <p><span class="label">Phone Number:</span> <span class="value fw-bold text-dark"> {{Details?.phoneNumber}}</span></p>
+      <p><span class="label">Gender:</span> <span class="value fw-bold text-dark"> {{Details?.gender}}</span></p>
+    </div>
+    <div class="edit-button-container">
+        <button class="btn" (click)="onEditButtonClick()"><i class="bi bi-pencil-square"></i>Edit</button>
+    </div>
+</ng-container>
+  </div>
+  <!-- Edit Form -->
+  <ng-container *ngIf="editMode">
+  <div class="container mt-5">
+    <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="userName">Name:</label>
+        <input type="text" id="userName" formControlName="userName" class="form-control" />
+        <div *ngIf="userName?.touched && userName?.errors?.['required']" class="text-danger">Name is required.</div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" class="form-control" />
+        <div *ngIf="email?.touched && email?.errors?.['required']" class="text-danger">Email is required.</div>
+        <div *ngIf="email?.touched && email?.errors?.['email']" class="text-danger">Invalid email format.</div>
+      </div>
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <textarea id="address" formControlName="address" class="form-control"></textarea>
+        <div *ngIf="address?.touched && address?.errors?.['required']" class="text-danger">Address is required</div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input type="date" id="dateOfBirth" formControlName="dateOfBirth" class="form-control" />
+        <div *ngIf="dateOfBirth?.touched && dateOfBirth?.errors?.['required']" class="text-danger">Date Of Birth is required</div>
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" formControlName="phoneNumber" class="form-control" />
+        <div *ngIf="phoneNumber?.touched && phoneNumber?.errors?.['required']" class="text-danger">Phone Number is required</div>
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select id="gender" formControlName="gender" class="form-control">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <div *ngIf="gender?.touched && gender?.errors?.['required']" class="text-danger">Gender is required</div>
+      </div>
+      <div class="form-group">
+        <label for="password">Please Confirm your Password(for additional security):</label>
+        <input type="password" formControlName="password" class="form-control" id="password" />
+        <div *ngIf="password?.touched && password?.errors?.['required']" class="text-danger">Password is required</div>
+      </div>
+      <div class="form-group">
+        <button type="submit" [disabled]="userDetailsForm.invalid" class="btn btn-primary"><i class="bi bi-check"></i> Save</button>
+      </div>
+    </form>
+  </div>
+</ng-container>
+  
+

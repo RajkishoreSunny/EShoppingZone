@@ -1,0 +1,27 @@
+<table class="table table-bordered border-primary" id="invoice">
+    <thead>
+      <tr>
+        <th scope="col">Sl No</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Product Quantity</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of orderData; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{products[i]}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.totalPrice}}</td>
+      </tr>
+      <tr>
+        <th scope="row"></th>
+        <td colspan="2" class="fw-bold">
+            {{userInfo | json}}
+        </td>
+          
+        <td class="fw-bold">TotalPrice: {{ calculateTotalPrice() }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary btn-lg" style="margin-left: 40%;" (click)="downloadPdf()">Download</button>

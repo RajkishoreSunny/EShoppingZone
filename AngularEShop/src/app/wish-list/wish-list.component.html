@@ -1,0 +1,21 @@
+<div class="wishlist-container mt-2">
+  <div *ngIf="wishListItems && wishListItems.length > 0;">
+    <div class="wishlist-items">
+      <div class="wishlist-item" *ngFor="let item of wishListItems;">
+        <img [src]="getImagePath(getProductById(item.productId)?.image)" alt="Product Image">
+        <div class="product-details">
+          <h3>{{ getProductById(item.productId)?.productName }}</h3>
+          <p>₹ {{ getProductById(item.productId)?.productPrice }}</p>
+          <span class="remove-button" (click)="removeFromWishList(item)">Remove</span>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-success elongated-btn" (click)="addToCart(item.productId, item.totalPrice)">Move to
+            Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!(wishListItems && wishListItems.length > 0)">
+    <p class="text-center fw-bold">Hey it feels so light! Let's add some items!</p>
+  </div>
+</div>

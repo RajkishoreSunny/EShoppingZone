@@ -1,0 +1,87 @@
+/* Wishlist Container */
+.wishlist-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+  }
+  
+  /* Wishlist Item */
+  .wishlist-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+  }
+  
+  .wishlist-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+  
+  .wishlist-item .product-details {
+    flex-grow: 1;
+  }
+  
+  .wishlist-item h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .wishlist-item p {
+    font-size: 14px;
+    color: #666666;
+  }
+  
+  /* Remove Button */
+  .remove-button {
+    color: #ff5f6d;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .remove-button:hover {
+    color: #ed4e5d;
+  }
+  
+/* Move to Cart Button */
+.text-center {
+  text-align: center;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 10px;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* Button Styles for Different Screen Sizes */
+@media (max-width: 480px) {
+  .btn {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 992px) {
+  .btn {
+    padding: 10px 15px;
+    font-size: 16px;
+  }
+}

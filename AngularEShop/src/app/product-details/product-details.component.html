@@ -1,0 +1,84 @@
+<div class="my-container mx-auto border border-dark" *ngIf="product">
+    <!-- Image and details of product -->
+    <div class="row g-0">
+        <div class="col-4">
+            <div class="d-flex align-items-center justify-content-center mt-5">
+                <img [src]="getImagePath(product.image)" alt="Product Image" class="img">
+            </div>
+        </div>
+        <div class="col-8 mt-5 align-self-center">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="fw-bold fs-5 text-danger">{{product.productName}}</h2>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title text-success">Price:
+                        <span class="text-primary">₹ {{product.productPrice}}</span>
+                    </h1>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-outline-danger" (click)="addToCart(product.productId, product.productPrice)" *ngIf="!isAddedToCart">Add To Cart</button>
+                    </div>
+                    <div class="d-grid gap-2 mt-2">
+                        <button class="button-wishlist" (click)="moveToWishList(product.productId, product.productPrice)">Move to Wishlist</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-text fw-semibold text-primary">Specifications</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-action fw-bold fs-5 text-dark">
+                            {{product.specification}}
+                        </li>
+                    </ul>
+                </div>
+                <div style="margin-left: 20px;">
+                    <h4 class="text-dark fw-semibold fs-5">Ratings from our Customers</h4>
+                    <p class="fw-bold text-success" *ngIf="product.rating >= 7">{{product.rating}} out of 10</p>
+                    <p class="fw-bold text-danger" *ngIf="product.rating < 7">{{product.rating}} out of 10</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Review -->
+    <div class="row g-0 my-5" *ngIf="product">
+        <div class="col p-3">
+            <h3>Give your review</h3>
+            <div>
+                <h3>Rate the Product (out of 10)</h3>
+                <div class="rating-container mb-2">
+                  <button class="rating-button" (click)="decreaseRating()">-</button>
+                  <span class="rating-value">{{ rating }}</span>
+                  <button class="rating-button" (click)="increaseRating()">+</button>
+                </div>
+                Select Image: <input type="file" id="image" name="image" (change)="onFileSelected($event)"><button type="button" class="btn btn-warning" (click)="uploadImage()">Upload</button>
+              </div>
+            <h5 class="mt-4">Write your review</h5>
+            <textarea class="w-100 p-2" [(ngModel)]="reviewText"></textarea>
+            <div class="d-flex align-items-start">
+                <button class="btn btn-outline-secondary mt-4 me-5" type="button" (click)="saveReview(product.productId, reviewText, rating)">
+                    Save Review
+                </button>
+                <div>
+                    <h6 class="text-danger mt-4" *ngIf="!isLoggedIn">Login First then write review</h6>
+                    <h6 class="text-danger" *ngIf="!reviewText || rating === 0">Review/Rating cannot be empty</h6>
+                    <h6 class="text-success" *ngIf="reviewSavedSuccessfully">Review saved successfully</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col p-3">
+            <h3 class="mt-2">Reviews</h3>
+            <h6 *ngIf="reviews.length == 0">No Reviews yet! Be the first one to write a review!</h6>
+            <div class="card m-3" *ngFor="let review of reviews">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="card-text fst-italic">
+                       {{ review.rating }}
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">{{review.description}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

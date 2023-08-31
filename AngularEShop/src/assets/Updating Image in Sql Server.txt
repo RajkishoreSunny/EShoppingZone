@@ -1,0 +1,19 @@
+DECLARE @ImageData VARBINARY(MAX)
+DECLARE @ProductId INT
+
+SET @ImageData = (SELECT BulkColumn FROM OPENROWSET(BULK 'F:\ChromeDownloads\Case_Study\EShopping\AngularEShop\src\assets\Product_Images\groceries8.png', SINGLE_BLOB) AS x)
+SET @ProductId = 9
+
+UPDATE Product
+SET Image = @ImageData
+WHERE ProductId = @ProductId
+
+DECLARE @ImageData VARBINARY(MAX)
+DECLARE @UserId INT
+
+SET @ImageData = (SELECT BulkColumn FROM OPENROWSET(BULK 'Desktop/PP_11911434.jpg', SINGLE_BLOB) AS x)
+SET @UserId = 4
+
+UPDATE [User]
+SET ProfileImg = @ImageData
+WHERE UserId = @UserId

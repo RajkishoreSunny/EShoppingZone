@@ -1,0 +1,68 @@
+<div class="container">
+  <h1>Product List</h1>
+  <div class="navLinks">
+    <a routerLink="/addproduct" class="navLink">Add Products</a>
+    <a routerLink="/addcategory" class="navLink">Add Category</a>
+    <a routerLink="/checkfeedback" class="navLink">Check Feedbacks</a>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div *ngFor="let product of productList" class="col">
+      <div class="card h-100">
+        <img [src]="product.image ? getImagePath(product.image) : ''" class="card-img-top equal-height-image"
+          alt="Product Image">
+        <div class="card-body d-flex justify-content-between">
+          <h3 class="card-title mb-1 text-danger">{{ product.productName }}</h3>
+          <div class="card-footer">
+            <div class="btn-group" role="group">
+              <button class="btn btn-warning" (click)="editProduct(product)">Update</button>
+              <button class="btn btn-danger" (click)="deleteProduct()">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <form *ngIf="selectedProduct" (ngSubmit)="updateProduct()" class="my-4 border-length">
+    <div class="form-group">
+      <label for="categoryId"><b>Category Id:</b></label>
+      <input type="text" [(ngModel)]="selectedProduct.categoryId" name="categoryId" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="image"><b>Update Image</b></label>
+      <input type="file" (change)="onFileSelected($event)" name="image" class="form-control-file">
+      <button type="button" class="btn btn-warning" (click)="uploadProductImage()">Upload</button>
+    </div>
+    <div class="form-group">
+      <label for="name"><b>Name:</b></label>
+      <input type="text" [(ngModel)]="selectedProduct.productName" name="name" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="price"><b>Price:</b></label>
+      <input type="text" [(ngModel)]="selectedProduct.productPrice" name="price" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="description"><b>Description:</b></label>
+      <input type="text" [(ngModel)]="selectedProduct.description" name="description" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="rating"><b>Rating:</b></label>
+      <input type="text" [(ngModel)]="selectedProduct.rating" name="rating" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="specification"><b>Specifications:</b></label>
+      <input type="text" [(ngModel)]="selectedProduct.specification" name="specification" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="reviewId"><b>Review Id:</b></label>
+      <input type="text" [(ngModel)]="selectedProduct.reviewId" name="reviewId" class="form-control">
+    </div>
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-warning btn-lg">Update</button>
+    </div>
+
+  </form>
+</div>

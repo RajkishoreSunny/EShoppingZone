@@ -1,0 +1,74 @@
+<div class="my-contanier mx-auto">
+    <section class="m-3 p-4 border border-dark form-control">
+        <h4 class="w-25 border border-secondary py-2 text-center my-rounded-corner">
+            Payment Info
+        </h4>
+        <table class="table w-50 mx-auto table-bordered border-danger table-hover shadow-lg">
+            <tbody>
+                <tr>
+                    <td>Total Items</td>
+                    <td class="fs-5 fw-bold">{{totalItems}}</td>
+                </tr>
+                <tr>
+                    <td>Total Price</td>
+                    <td class="fs-5 fw-bold text-danger">{{totalPrice}}</td>
+                </tr>
+                <tr>
+                    <td>Shipping Charges</td>
+                    <td class="fs-5 fw-bold text-danger" *ngIf="totalPrice < 500">200</td>
+                    <td class="fs-5 fw-bold text-danger" *ngIf="totalPrice > 500">0</td>
+                </tr>
+                <tr>
+                    <td>You have to pay</td>
+                    <td class="fs-5 text-success fw-bold" *ngIf="totalPrice < 500">{{totalPrice + 200}}</td>
+                    <td class="fs-5 text-success fw-bold" *ngIf="totalPrice > 500">{{totalPrice}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="m-3 p-4 border border-dark form-control">
+        <h4 class="w-25 border border-secondary py-2 text-center my-rounded-corner">
+            Proceed to Payment
+        </h4>
+        <div class="mt-4 w-50">
+            <table class="table w-50 table-bordered border-success table-hover shadow-lg">
+                <thead>
+                    <tr>
+                        <td>You have to Pay</td>
+                        <td *ngIf="totalPrice > 500">{{totalPrice}}</td>
+                        <td *ngIf="totalPrice < 500">{{totalPrice + 200}}</td>
+                    </tr>
+                    <tr>
+                        <td>Shipping Charges</td>
+                        <td class="fs-5 fw-bold text-danger" *ngIf="totalPrice < 500">200</td>
+                        <td class="fs-5 fw-bold text-danger" *ngIf="totalPrice > 500">0</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td *ngIf="true">{{userInfo?.address}}</td>
+                    </tr>
+                    <tr>
+                        <td>Mobile Number</td>
+                        <td *ngIf="true">{{userInfo?.phoneNumber}}</td>
+                    </tr>
+                </thead>
+            </table>
+            <div class="d-grid w-50">
+                <button type="button" class="btn btn-success mb-4" (click)="placeOrder()">
+                    Confirm Order(Pay On Delivery)
+                </button>
+                <button type="button" class="btn btn-success mb-4" *ngIf="totalPrice > 500" (click)="moveToPayment(totalPrice)">
+                    Pay Online {{totalPrice}}
+                </button>
+                <button type="button" class="btn btn-success mb-4" *ngIf="totalPrice < 500" (click)="moveToPayment(totalPrice + 200)">
+                    Pay Online ₹{{totalPrice + 200}}
+                </button>
+            </div>
+            
+        </div>
+    </section>
+
+    <div class="pt-4" *ngIf="!isLoggedIn">
+        <h2>You are not logged in</h2>
+    </div>
+</div>

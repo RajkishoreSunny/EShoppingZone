@@ -1,0 +1,21 @@
+<div class="" view='grid'>
+    <div class="container" *ngFor="let product of products | slice:0:maxProductsToShow">
+        <div class="card text-center">
+            <div class="card-header fw-bold fs-5 text-success">
+                {{product.productName}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title title">{{product.productName}}</h5>
+                <a [routerLink]="(['/productdetails', product.productId])">Details</a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title text-success">
+                    Price <span class="text-primary">{{product.productPrice}}</span>
+                </h5>
+            </div>
+            <div class="card-footer d-grip gap-2">
+                <button class="btn btn-outline-danger" (click)="addToCart(product.productId, product.productPrice)" *ngIf="!isAddedToCart" type="button">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</div>

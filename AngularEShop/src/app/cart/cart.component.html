@@ -1,0 +1,74 @@
+<div class="my-container mx-auto border border-dark">
+    <div class="p-4 border my-rounded-corner">
+      <h3 class="w-25 border text-center py-2 my-rounded-corner">Current Cart </h3>
+      <span class="wishlist-button">
+        <button class="btn btn-primary" routerLink="/wishlist">WishList</button>
+      </span>
+      <div class="mt-5">
+        <table class="table w-100 mx-auto table-bordered border-danger table-hover shadow-lg">
+          <thead>
+            <tr>
+              <th>Serial Number</th>
+              <th>Product Name</th>
+              <th>Product Image</th>
+              <th>Quantity</th>
+              <th>Total Price</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cartItems; let i = index">
+              <td class="fw-bold">{{ i + 1 }}</td>
+              <td class="fw-bold">{{ getProductById(item.productId)?.productName }}</td>
+              <td>
+                <img [src]="getImagePath(getProductById(item.productId)?.image)" alt="Product Image" class="img-thumbnail">
+              </td>
+              <td>
+                <div class="quantity-container">
+                  <button class="btn btn-outline-secondary" (click)="decreaseQuantity(item)">- </button>
+                  <span class="fw-bold text-success"> {{ item.quantity }} </span>
+                  <button class="btn btn-outline-secondary" (click)="increaseQuantity(item)"> +</button>
+                </div>
+              </td>
+              <td class="fw-bold">{{ item.quantity * getProductById(item.productId)?.productPrice }}</td>
+              <td>
+                <button class="btn btn-danger" (click)="removeFromCart(item)">Remove</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-5">
+        <table class="table w-50 mx-auto table-bordered border-danger table-hover shadow-lg">
+          <tbody>
+            <tr>
+              <td>Total Items</td>
+              <td class="fs-5 fw-bold">{{ calculateTotalItems() }}</td>
+            </tr>
+            <tr>
+              <td>Total Price</td>
+              <td class="fs-5 fw-bold text-danger">{{ calculateTotalPrice() }}</td>
+            </tr>
+            <tr>
+              <td>Shipping Charges</td>
+              <td class="fs-5 fw-bold text-danger" *ngIf="calculateTotalPrice() <= 500">200</td>
+              <td class="fs-5 fw-bold text-danger" *ngIf="calculateTotalPrice() > 500">0</td>
+            </tr>
+            <tr>
+              <td>You have to pay</td>
+              <td class="fs-5 text-success fw-bold" *ngIf="calculateTotalPrice() < 500">
+                {{ calculateTotalPrice() + 200 }}
+              </td>
+              <td class="fs-5 text-success fw-bold" *ngIf="calculateTotalPrice() >= 500">
+                {{ calculateTotalPrice() }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-grid w-50 mx-auto mb-3">
+        <button class="btn btn-outline-success fs-4" type="button" (click)="moveToOrder()">Order</button>
+      </div>
+    </div>
+  </div>
+  

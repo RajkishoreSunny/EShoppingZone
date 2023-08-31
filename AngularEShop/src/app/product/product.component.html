@@ -1,0 +1,84 @@
+<!--Grid View-->
+<div class="grid-view" *ngIf="view === 'grid'">
+    <div *ngFor="let product of products">
+        <div class="card text-center">
+            <div class="card-header fw-bold fs-5 text-success">
+                {{product.productName}}
+            </div>
+            <div class="overflow-hidden d-flex justify-content-center align-items-center">
+                <img [src]="product.image ? getImagePath(product.image) : ''" alt="Dynamic Image" class="card-img-top" height="100px" width="100px" OpenProductDetails
+                    [productId]="1" />
+            </div>
+            <div class="card-body">
+                <h5 class="card-title title">{{product.productName}}</h5>
+                <p class="">{{product.description}}</p>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title text-success">
+                    Price: ₹ <span class="text-primary">{{product.productPrice}}</span>
+                </h5>
+            </div>
+            <div class="card-footer d-grip gap-2">
+                <button class="btn btn-outline-danger" type="button">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--List View-->
+<div class="list-view" *ngIf="view === 'list'">
+    <div *ngFor="let product of products">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-4 overflow-hidden d-flex justify-content-center align-items-center">
+                        <img [src]="product.image ? getImagePath(product.image) : ''" class="img-fluid rounded-start" [alt]="product.productName"
+                            OpenProducts [productId]="product.productId" />
+                        </div>
+                        <div class="col d-flex flex-column">
+                            <div class="card-header text-center fw-bold fs-5 text-black">
+                                {{product.productName}}
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title title fw-semibold text-warning">{{product.productName}}</h5>
+                                <p class="card-text description text-secondary">{{product.description}}</p>
+                            </div>
+                            <div class="card-body">
+                                <a class="card-title text-muted" (click)="navigateToProductDetails(product.productId)">Specifications</a>
+                                <h2 class="card-title text-success">
+                                    Price: ₹ <span class="text-primary">{{product.productPrice}}</span>
+                        </h2>
+                    </div>
+                    <div class="card-footer text-muted d-grid gap-2">
+                        <button class="btn btn-outline-danger" (click)="addToCart(product.productId, product.productPrice)" *ngIf="!isAddedToCart" type="button">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+<!--Cart View-->
+<div class="cart-item-view" *ngIf="view === 'currcartitem'">
+    <div class="card">
+        <div *ngFor="let product of products">
+            <div class="row g-0">
+                <div class="col-4 justify-content-center overflow-hidden d-flex align-items-center">
+                    <img src="../../assets/iphone13.png" alt="iphone13" class="img-fluid rounded-start"
+                        OpenProductDetails [productId]="1" />
+                </div>
+                <div class="col-8">
+                    <div class="card-body">
+                        <h5 class="card-title title">{{product.productName}}</h5>
+                        <h5 class="card-title text-success"> Final Price</h5>
+                        <h6 class="card-subtitle text-danger text-decoration-line-through">
+                            Original Price
+                        </h6>
+                        <span class="text-primary">11 Products available</span>
+                    </div>
+                    <div class="card-footer text-muted d-grip gap-2">
+                        <button class="btn btn-danger" type="button">Remove from Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+  }
+
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    background-color: #ccc;
+    /* Add CSS to display the profile image */
+  }
+
+  .user-details {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .user-details h2 {
+    margin: 0;
+  }
+
+  .user-details p {
+    color: #888;
+    margin: 5px 0;
+  }
+
+  .user-details .label {
+    font-weight: bold;
+  }
+
+  .user-details .value {
+    color: #555;
+  }
+  .edit-button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 40px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .btn i {
+    margin-right: 8px;
+  }
+
+  .btn:hover {
+    background-color: #0056b3;
+  }

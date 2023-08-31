@@ -1,0 +1,121 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+.footer-wrapper {
+    margin-top: 30px;
+  }
+
+  footer {
+    margin-top: 200px;
+    padding: 10px;
+    background-color:mistyrose;
+    color: #fff;
+    padding: 40px 20px;
+  }
+  .footer-text{
+    font-family: serif;
+    color: rgb(248, 26, 92);
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .footer-column {
+    width: 25%;
+    margin-bottom: 40px;
+  }
+  
+  .footer-column h4 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .text-color{
+    color: rgb(248, 26, 92);
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+  }
+  
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .main{
+    background-size: cover;
+    height: 80vh;
+    background-position: 50% 50%;
+    width: 100%;
+  }
+  .carousel-item{
+    background-size: cover;
+    height: 90vh;
+    background-position: 50% 50%;
+    width: 100%;
+  }
+  .img{
+    height: 400px;
+  }
+  .whead{
+    text-align: center;
+  }
+  .card-img-top{
+    height: 200px;
+    width: 300px;
+  }
+  .btn{
+    background-color: rgb(248, 26, 92);
+    color: white;
+  }
+  .card-title{
+    color: black;
+    font-family: serif;
+  }
+  .card-text{
+    font-family: serif;
+  }
+  .card:hover{
+    box-shadow: -3px 44px 37px -42px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -3px 44px 37px -42px rgba(0,0,0,0.75);
+    -moz-box-shadow: -3px 44px 37px -42px rgba(0,0,0,0.75);
+  }
+  .fb:hover{
+    color: #3b5998;
+  }
+  .tw:hover{
+    color: #00acee;
+  }
+  .ig:hover{
+    color:#962fbf;
+  }
+  .contact-text{
+    font-family: serif;
+    text-align: center;
+  }
+  .contact{
+    padding-top: 50px;
+  }
+  .btn{
+    background-color: rgb(248, 26, 92);
+    color: white;
+  }
+  .shop{
+    font-family: serif;
+    font-size: 2.5rem;
+  }
+  .custom-card{
+    max-width: 300px;
+  }

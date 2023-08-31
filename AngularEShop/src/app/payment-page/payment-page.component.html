@@ -1,0 +1,29 @@
+<div class="payment-form mt-5">
+    <h2>Card Payment for {{totalPrice}}</h2>
+    <form #paymentForm="ngForm" (ngSubmit)="placeOrder()">
+        <div class="form-group">
+            <label for="cardNumber">Card Number (16 digits)</label>
+            <input type="number" id="cardNumber" name="cardNumber" [(ngModel)]="formData.cardNumber" pattern="[0-9]{16}" required>
+            <span class="error-message" *ngIf="!paymentForm.controls['cardNumber']?.valid && paymentForm.controls['cardNumber']?.touched">
+                Card number is not valid.
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="expirationDate">Expiration Date</label>
+            <input type="date" id="expirationDate" name="expirationDate" [(ngModel)]="formData.expirationDate" [min]="minDate" required>
+        </div>
+        <div class="form-group">
+            <label for="cvv">CVV (3 digits)</label>
+            <input type="number" id="cvv" name="cvv" [(ngModel)]="formData.cvv" pattern="[0-9]{3}" required>
+            <span class="error-message" *ngIf="!paymentForm.controls['cvv']?.valid && paymentForm.controls['cvv']?.touched">
+                CVV must be of 3 digits
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="nameOnCard">Name on Card</label>
+            <input type="text" id="nameOnCard" name="nameOnCard" [(ngModel)]="formData.nameOnCard">
+        </div>
+        <button type="submit" [disabled]="!paymentForm.valid">Pay and Generate Bill</button>
+    </form>
+</div>
+

@@ -1,0 +1,57 @@
+<div class="container d-flex align-items-center justify-content-center" style="height: 100vh;">
+    <div class="card">
+      <div class="card-body">
+        <form (ngSubmit)="addProduct()" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="productName" class="fw-bold">Product Name</label>
+            <input type="text" id="productName" class="form-control" [(ngModel)]="productName" name="productName" required>
+          </div>
+
+          <div class="form-group">
+            <label for="categoryId" class="fw-bold">Category Id</label>
+            <input type="text" id="categoryId" class="form-control" [(ngModel)]="categoryId" name="categoryId" required>
+          </div>
+  
+          <div class="form-group">
+            <label for="productPrice" class="fw-bold">Price</label>
+            <input type="text" id="productPrice" class="form-control" [(ngModel)]="productPrice" name="productPrice" required>
+          </div>
+
+          <div class="form-group">
+            <label for="description" class="fw-bold">Description</label>
+            <input type="text" id="description" class="form-control" [(ngModel)]="description" name="description" required>
+          </div>
+
+          <div class="form-group">
+            <label for="rating" class="fw-bold">Ratings</label>
+            <input type="text" id="rating" class="form-control" [(ngModel)]="rating" name="rating" required>
+          </div>
+
+          <div class="form-group">
+            <label for="specification" class="fw-bold">Specifications</label>
+            <input type="text" id="specification" class="form-control" [(ngModel)]="specification" name="specification" required>
+          </div>
+
+          <div class="form-group">
+            <label for="reviewId" class="fw-bold">Review Id</label>
+            <input type="text" id="reviewId" class="form-control" [(ngModel)]="reviewId" name="reviewId" required>
+          </div>
+  
+          <button type="submit" class="btn btn-danger">Add</button>
+  
+          <div class="my-4">
+            <h4>Please add the Product Name and other details before uploading an image.</h4>
+          </div>
+  
+          <div class="form-group">
+            <label for="image" class="fw-bold">Product Image</label>
+            <div class="input-group">
+              <input type="file" id="image" class="form-control-file" (change)="onFileSelected($event)" name="image">
+              <button type="button" class="btn btn-warning" (click)="uploadProductImage()">Upload</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+

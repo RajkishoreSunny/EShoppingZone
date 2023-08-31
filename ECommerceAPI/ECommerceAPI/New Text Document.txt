@@ -1,0 +1,50 @@
+			//var user = _userService.GetUserByEmail(model.EmailId);
+			//if (user != null && model.Password == user.Password)
+			//{
+			//var tokenDescriptor = new SecurityTokenDescriptor
+			//{
+			//	Subject = new ClaimsIdentity(new Claim[]
+			//	{
+			//		new Claim("UserId", user.UserId.ToString())
+			//	}),
+
+			//	SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("PuHGYushTHK76%$g")), SecurityAlgorithms.HmacSha256Signature)
+			//};
+			//var tokenHandler = new JwtSecurityTokenHandler();
+			//var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+			//var token = tokenHandler.WriteToken(securityToken);
+			//return Ok(new { token });
+
+			//}
+			//else
+			//{
+			//	return BadRequest(new { message = "Email or Password is incorrect." });
+			//}
+
+
+
+builder.Services.AddAuthentication(opt =>
+{
+	opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+	opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+	opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+	options.RequireHttpsMetadata = false;
+	options.TokenValidationParameters = new TokenValidationParameters
+	{
+		ValidateIssuer = true,
+		ValidateAudience = true,
+		ValidateLifetime = true,
+		ValidateIssuerSigningKey = true,
+		ValidIssuer = "https://localhost:7052",
+		ClockSkew = TimeSpan.Zero,
+		ValidAudiences = new List<string>
+		{
+			"https://localhost:7052",
+			"https://localhost:4200"
+		},
+		IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("PuHGYushTHK76%$g"))
+	};
+});

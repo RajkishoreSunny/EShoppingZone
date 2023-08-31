@@ -1,0 +1,40 @@
+<title style="font-family: serif;">Login Page</title>
+<div style="background: url('../../assets/plain.jpg'); height: 650px;">
+  <div class="container">
+    <div class="login-form" style="background: #FFE4E1; margin-top: 120px;">
+      <h2 style="color: rgb(248, 26, 92)"><b>Login</b></h2>
+      <form class="border p-3 rounded-3" [formGroup]="loginForm" (ngSubmit)="loginOnSubmit()">
+        <label for="email" class="form-label"><b>Email</b></label>
+        <input type="text" id="email" class="form-control" formControlName="email">
+        <div class="form-text text-danger" *ngIf="Email.errors?.['required'] && (Email.dirty || Email.touched)">
+          Email is required
+        </div>
+        <div class="form-text text-danger" *ngIf="Email.errors?.['email'] && (Email.dirty || Email.touched)">
+          Email is Invalid
+        </div>
+
+        <label for="password" class="form-label"><b>Password</b></label>
+        <input type="password" id="password" class="form-control" formControlName="password">
+        <div class="form-text text-danger"
+          *ngIf="Password.errors?.['required'] && (Password.dirty || Password.touched)">
+          Password is required
+        </div>
+        <div class="form-text text-danger"
+          *ngIf="Password.errors?.['minlength'] || Password.errors?.['maxlength'] && (Password.dirty || Password.touched)">
+          Password should be minimum of 5 characters and maximum of 20 characters
+        </div>
+
+        <input type="submit" value="Login" [disabled]="loginForm.invalid" class="btn btn-danger">
+      </form>
+      <div class="forgot-password">
+        <a *ngIf="isEmailValid()" (click)="forgotPasswordClicked()">Forgot Password?</a>
+      </div>
+      <div class="sign-up">
+        <a routerLink="/register">Sign Up</a>
+      </div>
+      <div class="admin">
+        <a routerLink="/admin">Admin Login</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+insert into Product
+values(1, (select * from OPENROWSET(BULK 'F:\ChromeDownloads\Case_Study\EShopping\AngularEShop\src\assets\iphone13.png', SINGLE_BLOB) as image),
+'IPhone 13', 79999, 'The iPhone is a smartphone made by Apple that combines a computer, iPod, digital camera and cellular phone into one device with a touchscreen interface.',
+8, 'NETWORK	Technology GSM / CDMA / HSPA / EVDO / LTE / 5G LAUNCH Announced	2021, September 14 Status Available. Released 2021, September 24 BODY Dimensions	146.7 x 71.5 x 7.7 mm (5.78 x 2.81 x 0.30 in)
+Weight	174 g (6.14 oz)', 1);

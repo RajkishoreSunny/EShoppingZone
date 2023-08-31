@@ -1,0 +1,108 @@
+<div class="d-flex justify-content-center align-items-center">
+  <div class="container">
+    <h2 style="color: rgb(248, 26, 92); font-weight: bold; text-align: right;">Registration Form</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="registerSubmitted()" >
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" formControlName="UserName">
+        <div class="form-text text-danger"
+          *ngIf="UserName.errors?.['required'] && (UserName.touched || UserName.dirty)">
+          User Name is Required
+        </div>
+        <div class="form-text text-danger" *ngIf="UserName.errors?.['minlength']">
+          User Name is Short
+        </div>
+        <div class="form-text text-danger" *ngIf="UserName.errors?.['pattern'] && (UserName.touched || UserName.dirty)">
+          User Name should start with alphabet
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" formControlName="Password">
+        <div class="form-text text-danger"
+          *ngIf="Password.errors?.['required'] && (Password.touched || Password.dirty)">
+          Password is Required
+        </div>
+        <div class="form-text text-danger"
+          *ngIf="Password.errors?.['minlength'] && (Password.touched || Password.dirty)">
+          Password Should be 6 to 15 characters long
+        </div>
+        <div class="form-text text-danger"
+          *ngIf="Password.errors?.['maxlength'] && (Password.touched || Password.dirty)">
+          Password Should be 6 to 15 characters long
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Confirm Password:</label>
+        <input type="password" class="form-control" id="repeatpassword" formControlName="rpwd">
+        <div class="form-text text-danger" id="rpwd" [ngStyle]="{'display': repeatPass}">
+          Confirm Password is Required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" formControlName="Email">
+        <div class="form-text text-danger" *ngIf="Email.errors?.['required'] && (Email.touched || Email.dirty)">
+          Email Required
+        </div>
+        <div class="form-text text-danger" *ngIf="Email.errors?.['email'] && (Email.touched || Email.dirty)">
+          Email not valid
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" class="form-control" id="dob" formControlName="DateOfBirth">
+        <div class="form-text text-danger"
+          *ngIf="DateOfBirth.errors?.['required'] && (DateOfBirth.touched || DateOfBirth.dirty)">
+          DOB Required
+        </div>
+        <div class="form-text text-danger"
+          *ngIf="DateOfBirth.errors?.['required'] && (DateOfBirth.touched || DateOfBirth.dirty)">
+          DOB Required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" class="form-control" id="phone" formControlName="PhoneNumber">
+        <div class="form-text text-danger"
+          *ngIf="PhoneNumber.errors?.['required'] && (PhoneNumber.touched || PhoneNumber.dirty)">
+          Phone Number is Required
+        </div>
+        <div class="form-text text-danger"
+          *ngIf="PhoneNumber.errors?.['maxlength'] && (PhoneNumber.touched || PhoneNumber.dirty)">
+          Phone Number is Invalid
+        </div>
+        <div class="form-text text-danger"
+          *ngIf="PhoneNumber.errors?.['minlength'] && (PhoneNumber.touched || PhoneNumber.dirty)">
+          Phone Number is Invalid
+        </div>
+      </div>
+      <div class="form-group">
+        <div><label for="gender">Gender:</label></div>
+        <div>
+          <label for="male" id="male">Male</label>
+          <input type="radio" class="form-check-input" value="m" id="male" formControlName="Gender" />
+        </div>
+        <div>
+          <label for="female" id="female">Female</label>
+          <input type="radio" class="form-check-input" value="f" id="female" formControlName="Gender" />
+        </div>
+        <div class="form-text text-danger" *ngIf="Gender.errors?.['required'] && (Gender.touched || Gender.dirty)">
+          Gender is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <textarea class="form-control" id="address" formControlName="Address" rows="3"
+          style="padding-bottom: 10px;"></textarea>
+      </div>
+      <div class="form-text text-danger" style="padding-bottom: 20px;"
+        *ngIf="Address.errors?.['required'] && (Address.touched || Address.dirty)">
+        Address is required
+      </div>
+      <div class="d-grid gap-2 m-3">
+        <button type="submit" class="btn btn-danger" [disabled]="registerForm.invalid">Register</button>
+      </div>
+    </form>
+  </div>
+</div>

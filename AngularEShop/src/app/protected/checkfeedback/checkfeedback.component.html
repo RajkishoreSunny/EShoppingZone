@@ -1,0 +1,16 @@
+<table class="table table-bordered border-primary" id="invoice">
+    <thead>
+      <tr>
+        <th scope="col">Sl No</th>
+        <th scope="col">Sender Details</th>
+        <th scope="col">Feedback</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let feedback of feedbacks">
+            <td>{{feedback.feedbackId}}</td>
+            <td>{{getUserInfo(feedback.userId)}}</td>
+            <td>{{feedback.description}}</td>
+        </tr>
+    </tbody>
+</table>
