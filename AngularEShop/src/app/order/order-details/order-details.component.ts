@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import NavigationService from '../../services/navigation.service';
-import { forkJoin, map } from 'rxjs';
+import { Observable, finalize, forkJoin, map, subscribeOn } from 'rxjs';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
@@ -15,6 +15,7 @@ export class OrderDetailsComponent implements OnInit {
   userInfo: any;
   productId: number[] = [];
   products: string[] = [];
+  userId: number = Number(localStorage.getItem('userId'));
   constructor(private route: ActivatedRoute, private navigationService: NavigationService,
     ) {}
 
@@ -58,14 +59,40 @@ export class OrderDetailsComponent implements OnInit {
     var doc = new jsPDF();
     autoTable(doc, {html: "#invoice"});
     doc.save("productInvoice");
-    const userId = Number(localStorage.getItem('userId'));
-      this.navigationService.clearCart(userId).subscribe(
-        () => alert('Order Placed!!! Thank You for Shopping with us!!!'),
-        (error) => console.log(error)
-      );
   }
+  confirmOrder(): Observable<any> {
+    const orderDetails: any[] = [];
+    this.orderData.forEach((item: any) => {
+      const orderDetail = {
+        userId: Number(localStorage.getItem('userId')),
+        productId: item.productId,
+        quantity: item.quantity,
+        totalPrice: item.totalPrice
+      };
+      orderDetails.push(orderDetail);
+    });
   
+    const orderRequests: Observable<any>[] = orderDetails.map((orderDetail) => {
+      return this.navigationService.placeOrder(orderDetail);
+    });
+    return forkJoin(orderRequests).pipe(
+      finalize(() => {
+        this.navigationService.clearCart(this.userId).subscribe(
+          () => alert('Order Placed!!! Thank You for shopping with Us!!'),
+          (error) => console.log(error)
+        )
+      })
+    );
+  }
+  placeOrder(){
+    this.confirmOrder().subscribe(
+      res => {
+        console.log(res);
+      }
+    )
+  }
   
     
   
 }
+
